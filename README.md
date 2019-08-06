@@ -2,16 +2,16 @@
 
 ## Installation
 
-    composer require y-ui/laravel-data-masking ^1.0
+    composer require --dev y-ui/laravel-data-masking ^1.0
     
 ## Configuration
 
-If you laravel version is below 5.5
-1. Open your `config/app.php` and add the following to the providers array:
+If you’re on Laravel 5.5 or later the package will be auto-discovered. 
 
-    ```php
-    \Yui\DataMasking\DataMaskingServiceProvider::class,
-    ```
+Otherwise you will need to manually configure it in your `config/app.php` and add the following to the providers array:
+```php
+\Yui\DataMasking\DataMaskingServiceProvider::class,
+```
     
 ## Usage
 ### Simple usage

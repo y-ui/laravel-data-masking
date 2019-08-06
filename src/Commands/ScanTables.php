@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Schema;
 class ScanTables extends Command
 {
 
+    const CONFIG_FILE = 'data-masking.php';
+
     /**
      * The name and signature of the console command.
      *
@@ -50,6 +52,14 @@ class ScanTables extends Command
     {
         $options = $this->options();
 
+        if (file_exists(config_path(self::CONFIG_FILE))) {
+            $confirm = $this->confirm('The config file has exists, make sure to overwrite?');
+            if (!$confirm) {
+                $this->comment('Command Cancelled!');
+                return;
+            }
+        }
+
         if (!empty($options['tables'])) {
             $tables = explode(',', $options['tables']);
         } else {
@@ -74,7 +84,7 @@ class ScanTables extends Command
 
         $txt = file_get_contents(__DIR__ . '/../Configs/config.php') . 'return ' . $txt . ';';
 
-        file_put_contents('config/data-masking.php', $txt);
+        file_put_contents(config_path(self::CONFIG_FILE), $txt);
 
         $this->showInfo();
     }
