@@ -55,7 +55,11 @@ You can also use faker to replace column
     'date' => "faker:date($format = 'Y-m-d', $max = 'now')"
     'name' => 'faker:name'
     
-    
+If there is a field with a content of 0-9, you want to set it all to 2
+```php
+'cloumn_name' => '2:1-' //This is faster than using faker
+```    
+
 Faker wiki [https://github.com/fzaninotto/Faker](https://github.com/fzaninotto/Faker)
     
 If you want to use chinese, open `config/app.php` add `'faker_locale' => 'zh_CN'`,
