@@ -1,0 +1,35 @@
+{
+    "name": "y-ui/laravel-data-masking",
+    "description": "A mysql data masking tool with Laravel",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "php": ">=7.0.0"
+    },
+    "authors": [
+        {
+            "name": "刘正伟"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Yui\\DataMasking\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yui\\DataMasking\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yui\\DataMasking\\DataMaskingServiceProvider"
+            ]
+        }
+    }
+}
