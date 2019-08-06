@@ -116,17 +116,20 @@ class MaskData extends Command
      */
     public function updateWithSqlFunction($tableName, $attributes)
     {
-        $tableNames = [$tableName];
+        $join = [];
         if (!empty($this->emailSqls)) {
             $primaryKey = $this->getPrimaryKey($tableName);
             foreach ($this->emailSqls as $sql) {
-                $tableNames[] = str_ireplace(['{table_name}', '{primary_key}'], [$tableName, $primaryKey], $sql);
+                $join[] = str_ireplace(['{table_name}', '{primary_key}'], [$tableName, $primaryKey], $sql);
             }
+
+            $this->emailSqls = [];
         }
 
-        $tableName = implode(',', $tableNames);
+        $join = implode(' ', $join);
 
-        $sql = "update $tableName set " . implode(',', $attributes) . $this->where;
+        $sql = "update $tableName $join set " . implode(',', $attributes) . $this->where;
+        $this->info($sql);
         DB::statement($sql);
     }
 
@@ -194,7 +197,8 @@ class MaskData extends Command
         if (strtolower($char) == 'email') {
             $char = '*';
             $targetColumn = self::EMAIL_KEY_PREFIX . $index;
-            $this->emailSqls[] = '(select substr(email,1 ,instr(email, \'@\')-1) as ' . $targetColumn . ' from {table_name} where id={table_name}.{primary_key}) as' . $column;
+            $tempTable = 'marsk_tmp_table_' . $index;
+            $this->emailSqls[] = "inner join(select {primary_key},substr(email,1 ,instr(email, '@')-1) as  $targetColumn from {table_name}) as $tempTable on $tempTable.{primary_key}={table_name}.{primary_key}";
         }
         if (strpos($range, '~') !== false) {
             return $this->keepTheFirstAndLastSql($column, $char, $range, $targetColumn);
