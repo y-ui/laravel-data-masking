@@ -204,7 +204,25 @@ class MaskData extends Command
             return $this->keepTheFirstAndLastSql($column, $char, $range, $targetColumn);
         }
 
+        if (strtolower($char) == 'text') {
+            return $this->keepFixedTextSql($column, $char, $range, $targetColumn);
+        }
+
         return $this->keepIntervalSql($column, $char, $range, $targetColumn);
+    }
+
+    /**
+     * 直接替换成固定字符串的SQL
+     *`
+     * @param $column
+     * @param $char
+     * @param $range
+     * @param $targetColumn
+     * @return string
+     */
+    public function keepFixedTextSql($column, $char, $range, $targetColumn)
+    {
+        return "$column='$range'";
     }
 
     /**

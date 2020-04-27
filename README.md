@@ -48,6 +48,7 @@ You can customize any character
     'phone' => '123:4-'   18666666666 => 18612312312
     'phone' => '*:1~2'    18666666666 => 1********66  Keep the first and end character
     'email' => 'email:3-' production@google.com => pr********@google.com  Replace only the characters before @
+    'name' => 'text:Alex' everything => Alex  Replace all value to text 
     
 You can also use faker to replace column
 
