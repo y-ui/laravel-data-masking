@@ -1,5 +1,10 @@
 # laravel-data-masking
 
+[![Latest Stable Version](https://poser.pugx.org/y-ui/laravel-data-masking/v/stable)](https://packagist.org/packages/y-ui/laravel-data-masking)
+[![Total Downloads](https://poser.pugx.org/y-ui/laravel-data-masking/downloads)](https://packagist.org/packages/y-ui/laravel-data-masking)
+[![Latest Unstable Version](https://poser.pugx.org/y-ui/laravel-data-masking/v/unstable)](https://packagist.org/packages/y-ui/laravel-data-masking)
+[![License](https://poser.pugx.org/y-ui/laravel-data-masking/license)](https://packagist.org/packages/y-ui/laravel-data-masking)
+
 ## Installation
 
     composer require --dev y-ui/laravel-data-masking ^1.0
